@@ -22,6 +22,5 @@ async function getHolidays() {
     });
    
     // console.log(countN);
-    document.getElementById("countN").innerHTML = countN;
     document.body.appendChild(list);
 }
