@@ -1,0 +1,75 @@
+.smallcanvas{
+width: 35%;
+padding: 15px;
+border: 1px solid gray;
+border-radius: 15px;
+margin: 15px;
+height: 40%;    
+}
+.button {
+    background-color: transparent; /* Green */
+    border: 2px solid pink;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 20ms;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: pink; /* Green */
+    color: white;
+  }
+  .footer{
+    text-align: center;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+  }
+  
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
+  .container .coin-price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc;
+    margin: 7px;
+  }
+  .container .coin-price .logO{
+    width: 70px;
+    margin-right: 10px;
+  }
+  .container .coin-price .logO img{
+    width: 100%;
+  }
+  .container .coin-price div{
+    display: block;
+  }
+  .container .coin-price div h1{
+    font-size: 20px;
+  }
+  .table-sheet{
+    width: 500px;
+    height: 500px;
+  }

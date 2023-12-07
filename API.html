@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>API Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="icon" href="image/API.png">
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+</style>
+</head>
+<body class="w3-light-grey" onload="init()">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Home</a> 
+  <a href="API.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">API</a> 
+  <a href="Java.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">JAVA</a> 
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">API</span>
+  <!-- <div id="google_translate_element"></div> -->
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-center" style="max-width:1600px;margin-top:83px">
+    <hr>
+ <div class="w3-content" style="max-width:600px">
+   <h4 class="w3-center"><b>Contact Me</b></h4>
+   <p>Do you want to hire me? or you want to send a message talk about something great please contact me here!</p>
+   <form method="POST" 
+   action="https://script.google.com/macros/s/AKfycbz96x38AcvTWz0wMJyD6t-f4Thds5oNGKVsjCEZzIvWQYXCVtMhIwc_rsDahlrCkA-yRw/exec">
+     <div class="w3-section">
+       <label>Name/Company</label>
+       <input class="w3-input w3-border" type="text" name="Name" required>
+     </div>
+     <div class="w3-section">
+       <label>Email</label>
+       <input class="w3-input w3-border" type="text" name="Email" required>
+     </div>
+     <div class="w3-section">
+       <label>Message</label>
+       <input class="w3-input w3-border" type="text" name="Message" required>
+     </div>
+     <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Send Message</button>
+   </form>
+   <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRt_ma3x0X2E7GICkDVDEHAfvDOH93DIhTelcRJL77aSQ_Y1M5TAxOs0-O20b0DWbamjqrZAMyHjovr/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" class="table-sheet"></iframe> </div><hr>
+
+ <h2>Where your are</h2>
+<p>กดปุ่มเพื่อรับตำแหน่ง</p>
+<button class="button" onclick="getLocation()">Get</button>
+<p id="locat"></p>
+<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3811.575850950678!2d104.0878815096281!3d17.190831796276893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDExJzI3LjciTiAxMDTCsDA1JzIyLjEiRQ!5e0!3m2!1sth!2sth!4v1701914686052!5m2!1sth!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+<hr>
+<div class="container">
+<div class="coin-price ">
+    <div class="logO"><img src="image/Bitcoin.png"  alt="">
+    </div>
+    <div>
+        <h1>$ <span id="bitcoin"></span></h1>
+        <h1>BITCOIN</h1>
+    </div>
+</div>
+<div class="coin-price">
+    <div class="logO"><img src="image/Ethereum.png"  alt="">
+    </div>
+    <div>
+        <h1>$ <span id="ethereum"></span></h1>
+        <h1>ETHEREUM</h1>
+    </div>
+</div>
+<div class="coin-price">
+    <div class="logO"><img src="image/Dogecoin.png"  alt="">
+    </div>
+    <div>
+        <h1>$ <span id="dogecoin"></span></h1>
+        <h1>DOGECOIN</h1>
+    </div>
+</div>
+<div class="coin-price">
+    <div class="logO"><img src="image/litecoin.png"  alt="">
+    </div>
+    <div>
+        <h1>$ <span id="litecoin"></span></h1>
+        <h1>Litecoin</h1>
+    </div>
+</div>
+</div><hr>
+<div>
+  <h1>Holiday TH สามารถกดได้ 10000 ครั้ง</h1>
+  <button class="button" onclick="getHolidays()" >Get Holidays</button>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="holiday.js"></script>
+</div>
+
+</div>
+<script src="ap.js"></script>
+<!-- </div> -->
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+ 
+  <hr>
+
+
+        <!-- Script Zone -->
+          
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://github.com/binance/binance-spot-api-docs.git"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+        </script>
+        
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        const x = document.getElementById("locat");
+        
+        function getLocation() {
+          try {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } catch {
+            x.innerHTML = err;
+          }
+        }
+        
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude + 
+          "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>
+  
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+</script>
+
+
+</body>
+</html>

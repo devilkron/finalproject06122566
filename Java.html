@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JS Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="icon" href="image/what-is-javascript-used-for.jpg">
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
+  <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Home</a> 
+  <a href="API.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">API</a> 
+  <a href="Java.html" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">JAVA</a> 
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">Java Page</span>
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+  
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+  <!-- About section -->
+  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">
+    <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+        <div class="smallcanvas">
+          <canvas id="myChart"></canvas></div>
+        <div class="smallcanvas">
+          <canvas id="meChart"></canvas></div>
+        <!-- <div class="smallcanvas">
+          <canvas id="meeChart"></canvas></div> -->
+  <hr>
+  <div>
+    <label >คำนวนเส้นรอบวงกลม: </label>
+    <input class="w-25" type="number" id="radius" placeholder="กรอกรัศมี">
+    <label id="circumference"></label>
+    <button class="btn btn-success w-25" onclick="calculateCircumference()">คำนวน</button>
+  </div><br>
+  <form>
+    <label for="sideA">ด้าน A:</label>
+    <input class="w-25" type="number" id="sideA" placeholder="กรอกความยาวของด้าน A" required>
+    <label for="sideB">ด้าน B:</label>
+    <input class="w-25" type="number" id="sideB" placeholder="กรอกความยาวของด้าน B" required>
+    <button type="button" onclick="calculateDiagonal()" class="btn btn-success w-25">คำนวณเส้นทะแยงมุม</button>
+</form>
+
+<p id="result"></p>
+    <button onclick="rollDice()" class="btn btn-success w-25">สุ่มทอยลูกเต๋า</button>
+    <div id="diceContainer"></div>
+    <br>
+
+    <label for="originalPrice">คำนวณส่วนลดราคาสินค้า:</label>
+    <input class="w-25" type="number" id="originalPrice" placeholder="กรอกราคาสินค้า" required>
+
+    <button class="btn btn-success w-25" onclick="calculateDiscount()">คำนวณส่วนลด</button>
+
+    <p id="discountResult"></p><br>
+
+    <h1>สูตรคำนวนหาความเร่ง a</h1>
+  
+  <label for="force">Force (N): </label>
+  <input class="w-25" type="text" id="force" placeholder="กรอกค่า f">
+
+  <label for="mass">Mass (kg): </label>
+  <input class="w-25" type="text" id="mass" placeholder="กรอกค่าน้ำหนัก m">
+
+  <button onclick="calculateAcceleration()" class="w-25 btn btn-success">Calculate Acceleration</button>
+
+    <script>
+        function calculateDiscount() {
+            var originalPrice = parseFloat(document.getElementById('originalPrice').value);
+
+            var discountPercentage = 0;
+
+            if (originalPrice >= 1000) {
+                discountPercentage = 10;
+            } else if (originalPrice >= 700) {
+                discountPercentage = 5;
+            }
+
+            var discountAmount = (originalPrice * discountPercentage) / 100;
+            var discountedPrice = originalPrice - discountAmount;
+            var discountResultElement = document.getElementById('discountResult');
+            discountResultElement.textContent = `ราคาสินค้าหลังหักส่วนลด: ${discountedPrice.toFixed(2)} บาท (ส่วนลด ${discountPercentage}%)`;
+        }
+    </script>
+     <script>
+        function calculateAcceleration() {
+          // ดึงค่า force และ mass จาก input element
+          var forceInput = document.getElementById('force');
+          var massInput = document.getElementById('mass');
+    
+          // แปลงค่า force และ mass เป็นตัวเลข
+          var force = parseFloat(forceInput.value);
+          var mass = parseFloat(massInput.value);
+    
+          // ตรวจสอบว่าผู้ใช้กรอกค่าหรือไม่
+          if (isNaN(force) || isNaN(mass)) {
+            alert('กรุณากรอกค่าที่เป็นตัวเลข');
+            return;
+          }
+    
+          // คำนวณความเร่ง
+          var acceleration = force / mass;
+    
+          // แสดงผลลัพธ์
+          alert('Force: ' + force + ' N\nMass: ' + mass + ' kg\nAcceleration: ' + acceleration + ' m/s²');
+        }
+      </script>
+    <script>
+        function rollDice() {
+            var diceFaces = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
+            var dice1Index = Math.floor(Math.random() * 6);
+            var dice2Index = Math.floor(Math.random() * 6);
+            var dice3Index = Math.floor(Math.random() * 6);
+
+            var dice1Points = dice1Index + 1;
+            var dice2Points = dice2Index + 1;
+            var dice3Points = dice3Index + 1;
+
+            var diceContainer = document.getElementById('diceContainer');
+            diceContainer.innerHTML = `<p>ลูกเต๋าที่ 1: ${diceFaces[dice1Index]} (แต้ม: ${dice1Points})</p>
+                                       <p>ลูกเต๋าที่ 2: ${diceFaces[dice2Index]} (แต้ม: ${dice2Points})</p>
+                                       <p>ลูกเต๋าที่ 3: ${diceFaces[dice3Index]} (แต้ม: ${dice3Points})</p>`;
+        }
+    </script>
+<script>
+    function calculateDiagonal() {
+    var sideA = parseFloat(document.getElementById('sideA').value);
+    var sideB = parseFloat(document.getElementById('sideB').value);
+
+    var diagonal = Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2));
+
+    var resultElement = document.getElementById('result');
+    resultElement.textContent = 'เส้นทะแยงมุม: ' + diagonal.toFixed(2);
+}
+
+
+</script>
+    <script>
+        function calculateCircumference() {
+
+    var radius = document.getElementById("radius").value;
+    var circumference = 2 * Math.PI * radius;
+    document.getElementById("circumference").innerHTML = circumference;
+
+}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // ดึงข้อมูล JSON จากไฟล์
+        fetch('country-by-surface-area.json')
+          .then(response => response.json())
+          .then(data => {
+            // ดึงข้อมูล country และ location จาก JSON
+            const countries = data.map(item => item.country);
+            const area = data.map(item => item.area);
+            
+            const ctx = document.getElementById('myChart');
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: countries,
+                datasets: [{
+                  label: 'Area',
+                  data: area,
+                  borderWidth: 5
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          });
+          const ctxx = document.getElementById('meChart');
+          new Chart(ctxx, {
+    type: 'pie',
+    data: {
+      labels: ['Thai','English','Japan'],
+      datasets: [{
+        label: 'ภาษา',
+        data: [80,65,30],
+      }]
+      
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  const ctxxx = document.getElementById('meeChart');
+          new Chart(ctxxx, {
+    type: 'line',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June','July','August','September','	October','November','December'],
+      datasets: [{
+        label: 'Population month',
+        data: [82,75,52,73,55,55,62,70,68,86,75,90],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+       </script>
+       
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-black w3-padding-32 w3-grey ">  
+   
+  
+  
+  <div class="w3-black w3-center w3-padding-24">Powered by <a href="#" title="Me" target="_blank" class="w3-hover-opacity">Me</a></div>
+</footer>
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+</script>
+
+
+</body>
+</html>
